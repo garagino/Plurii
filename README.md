@@ -24,13 +24,13 @@ Infos aqui...
 
 ## ⚙️ Instruções
 
-1. Instalar o [PostgreSQL]("https://www.postgresql.org/download/")
+1. Instalar o [PostgreSQL](https://www.postgresql.org/download/)
 2. Após o download, inicie o instalador e siga as etapas de instalação. Mantenha as opções padrão, mas na seção de password, defina a senha como "plurii". No final da instalação, quando perguntado se deseja iniciar o Stack Builder, não selecione a caixa.
 3. Agora, abra o programa pgAdmin4, que foi instalado como parte do PostgreSQL.
 4. No pgAdmin4, clique em "Add New Server". Dê um nome ao seu servidor e, na aba "Connection", configure o "Hostname" como "localhost". Use a password como "plurii", como foi definido anteriormente.
 5. Depois de adicionar o servidor, abra-o na lista à esquerda. Clique na opção "database" e escolha "Create". Nomeie o banco de dados como "Plurii" (com "P" maiúsculo) e clique em "Save".
 
-# No terminal pelo Visual Studio Code:
+#### No terminal pelo Visual Studio Code:
 1. ```pip install poetry```
 2. ```poetry install```
 3. ```poetry shell```

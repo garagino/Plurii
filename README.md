@@ -45,6 +45,7 @@ Infos aqui...
 ## 🔗 Google Sites
 
 O Google Site é utilizado como repositório geral das atividades da equipe.
+
 <a href="link_pro_sites">
   <img src="https://img.shields.io/badge/Acessar%20Site%20-Google Sites-%2304D361">
 </a>

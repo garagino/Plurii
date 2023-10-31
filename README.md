@@ -24,7 +24,7 @@ Infos aqui...
 
 ## ⚙️ Instruções
 
-1. Instalar o ![PostgreSQL]("https://www.postgresql.org/download/")
+1. Instalar o [PostgreSQL]("https://www.postgresql.org/download/")
 2. Após o download, inicie o instalador e siga as etapas de instalação. Mantenha as opções padrão, mas na seção de password, defina a senha como "plurii". No final da instalação, quando perguntado se deseja iniciar o Stack Builder, não selecione a caixa.
 3. Agora, abra o programa pgAdmin4, que foi instalado como parte do PostgreSQL.
 4. No pgAdmin4, clique em "Add New Server". Dê um nome ao seu servidor e, na aba "Connection", configure o "Hostname" como "localhost". Use a password como "plurii", como foi definido anteriormente.
@@ -45,7 +45,7 @@ Infos aqui...
 ## 🔗 Google Sites
 
 O Google Site é utilizado como repositório geral das atividades da equipe.
-- <a href="link_pro_sites">
+<a href="link_pro_sites">
   <img src="https://img.shields.io/badge/Acessar%20Site%20-Google Sites-%2304D361">
 </a>
 

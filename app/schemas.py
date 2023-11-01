@@ -3,12 +3,21 @@ from pydantic import BaseModel
 class User(BaseModel):
     username: str
     email: str
-    password: str
-    is_active: bool = True
-    is_superuser: bool = False
+    is_active: bool = True 
     
+    
+class UserAuth(User):
+    password: str 
     
 class LabRoom(BaseModel):
     name: str
     description: str
     is_active: bool = True
+    
+    
+class Student(User):
+    is_monitor: bool = True
+
+
+class Professor(User):
+    discipline: str

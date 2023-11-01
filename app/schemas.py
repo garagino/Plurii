@@ -1,13 +1,16 @@
 from pydantic import BaseModel
+from enum import Enum
 
 class User(BaseModel):
     username: str
     email: str
     is_active: bool = True 
+    Function: Function
     
     
 class UserAuth(User):
     password: str 
+    
     
 class LabRoom(BaseModel):
     name: str
@@ -21,3 +24,8 @@ class Student(User):
 
 class Professor(User):
     discipline: str
+    
+    
+class Function(Enum):
+    ADMIN = "admin"
+    USER = "user"

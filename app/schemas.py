@@ -6,3 +6,9 @@ class User(BaseModel):
     password: str
     is_active: bool = True
     is_superuser: bool = False
+    
+    
+class LabRoom(BaseModel):
+    name: str
+    description: str
+    is_active: bool = True

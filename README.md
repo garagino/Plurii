@@ -35,7 +35,7 @@ Infos aqui...
 2. ```poetry install```
 3. ```poetry shell```
 - Caso queira que a aplicação comece a rodar:
-4. ```uvicorn app.main:app --host localhost --port 8000 --reload```
+4. ```uvicorn app.main:app```
 5. Aplicação sendo executada com sucesso!
 
 ## 📄 Como foi desenvolvido?

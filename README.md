@@ -24,19 +24,41 @@ Infos aqui...
 
 ## ⚙️ Instruções
 
-1. Instalar o [PostgreSQL](https://www.postgresql.org/download/)
-2. Após o download, inicie o instalador e siga as etapas de instalação. Mantenha as opções padrão, mas na seção de password, defina a senha como "plurii". No final da instalação, quando perguntado se deseja iniciar o Stack Builder, não selecione a caixa.
-3. Agora, abra o programa pgAdmin4, que foi instalado como parte do PostgreSQL.
+1. Baixar o [PostgreSQL](https://www.postgresql.org/download/)
+2. Inicie o instalador e siga as etapas de instalação. Mantenha as opções padrão, mas na seção de password, defina a **senha como "plurii"**. No final da instalação, quando perguntado se deseja iniciar o Stack Builder, não selecione a caixa.
+3. Agora, abra o programa *pgAdmin4*, que foi instalado como parte do PostgreSQL.
 4. No pgAdmin4, clique em "Add New Server". Dê um nome ao seu servidor e, na aba "Connection", configure o "Hostname" como "localhost". Use a password como "plurii", como foi definido anteriormente.
 5. Depois de adicionar o servidor, abra-o na lista à esquerda. Clique na opção "database" e escolha "Create". Nomeie o banco de dados como "Plurii" (com "P" maiúsculo) e clique em "Save".
-
+6. Clone esse repositório e abra o projeto no vscode:
+   
 #### No terminal pelo Visual Studio Code:
-1. ```pip install poetry```
-2. ```poetry install```
-3. ```poetry shell```
-- Caso queira que a aplicação comece a rodar:
-4. ```uvicorn app.main:app```
-5. Aplicação sendo executada com sucesso!
+<dl>
+   1.Instale o poetry, esse é o nosso gerenciador de ambiente virtual
+   <dt>
+      
+      pip install poetry  
+   </dt>
+  
+   2. Installar as configurações do projeto:
+   <dt>
+      
+      poetry install
+   </dt>
+   
+   3. Iniciar o sheel do poetry
+   <dt>
+      
+      poetry shell
+   </dt>
+   
+   4.Caso queira que a aplicação comece a rodar:
+   <dt>
+      
+      uvicorn app.main:app
+   </dt>
+   5. Aplicação sendo executada com sucesso!
+</dl>
+
 
 ## 📄 Como foi desenvolvido?
 

@@ -26,7 +26,6 @@ itsdangerous = "2.1.2"
 jinja2 = "3.1.2"
 markupsafe = "2.1.1"
 orjson = "3.8.1"
-psycopg2 = "2.9.5"
 pycodestyle = "2.9.1"
 pydantic = "1.10.2"
 pydantic-core = "2.10.1"
@@ -46,6 +45,8 @@ uvicorn = "0.18.3"
 watchfiles = "0.18.0"
 websockets = "10.4"
 sqlalchemy-utils = "^0.41.1"
+pg8000 = "^1.30.3"
+
 
 
 [build-system]

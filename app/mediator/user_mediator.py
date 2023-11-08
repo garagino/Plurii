@@ -8,7 +8,7 @@ import jwt
 from passlib.context import CryptContext
 from fastapi import HTTPException
 from app.models.user import User
-from app.schemas.user import UserCreate, UserUpdate
+from app.schemas.user import UserAuth, UserCreate, UserUpdate
 from app.controllers.user_controller import UserController
 
 
@@ -110,6 +110,47 @@ class UserMediator:
     
     
     def _delete_user(self, user_email: str):
-        return self.user_controller.delete_user(self.db, user_email)
+        
+        db_user = self.user_controller.get_user_by_email(self.db, user_email)
+        
+        if db_user is None:
+            raise HTTPException(status_code=404, detail="User not found")
+        
+        self.user_controller.delete_user(self.db, user_email)
+        
+        
+    def user_login(self, user: UserAuth):
+        
+        db_user = self.user_controller.get_user_by_email(self.db, user.email)
+        
+        if db_user is None:
+            raise HTTPException(status_code=404, detail="User not found")
+        
+        if not self.pwd_context.verify(user.password, db_user.password):
+            raise HTTPException(status_code=401, detail="Incorrect password or email")
+        
+        access_token_expires = timedelta(minutes=30)
+        access_token = jwt.encode(
+            {"exp": datetime.utcnow() + access_token_expires, "sub": db_user.email},
+            self.secret_key,
+            algorithm=None
+        )
+        
+        return {"access_token": access_token, "usernamo": db_user.username, "access": db_user.user_function}
+    
+    
+    def verify_token(self, access_token):
+        
+        try:
+            payload = jwt.decode(access_token, self.secret_key, algorithms=[self.algorithm])
+            email: str = payload.get("sub")
+            if email is None:
+                raise HTTPException(status_code=401, detail="Could not validate credentials")
+            
+        except jwt.ExpiredSignatureError:
+            raise HTTPException(status_code=401, detail="Signature has expired")
+        
+        except jwt.InvalidTokenError as e:
+            raise HTTPException(status_code=401, detail="Invalid token")
         
         

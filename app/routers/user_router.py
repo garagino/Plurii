@@ -1,15 +1,18 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from app.schemas.user import UserCreate, UserBase, UserUpdate
+from app.schemas.user import UserCreate, UserUpdate
 from app.mediator.user_mediator import UserMediator
+from app.schemas.response import UserCreateResponse
 from app.database import get_db
 
 router = APIRouter()
 
-@router.post("/users/", response_model=UserBase)
+@router.post("/users/", response_model=UserCreateResponse)
 def create_user_route(user: UserCreate, db: Session = Depends(get_db)):
     db_user = UserMediator(db)._create_user(user)
-    return db_user
+    response_data = {"response": "User created successfully"}
+    return UserCreateResponse(**response_data)
+
 
 @router.get("/users/")
 def read_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):

@@ -1,6 +1,5 @@
 from re import U
-from urllib import response
-from pydantic import BaseModel, EmailStr, validator
+from pydantic import BaseModel, EmailStr
 from typing import Optional
 from enum import Enum
 
@@ -27,15 +26,6 @@ class UserCreate(UserAuth):
     is_superuser: Optional[bool] = False
     user_function: FunctionEnum
     user_role: FunctionRole
-    
-
-
-class UserBase(UserCreate):
-    response: Optional[str] = "User created successfully"
-
-    class Config:
-        orm_mode = True
-        
         
 class UserUpdate(UserCreate):
     pass

@@ -4,3 +4,4 @@ venv/
 *.db
 README.md
 *.vscode
+.env

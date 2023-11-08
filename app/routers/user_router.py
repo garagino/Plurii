@@ -1,37 +1,37 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from app.schemas.user import User, UserCreate
-from app.controllers import user_controller
+from app.schemas.user import UserCreate, UserBase, UserUpdate
+from app.mediator.user_mediator import UserMediator
 from app.database import get_db
 
 router = APIRouter()
 
-@router.post("/users/", response_model=User)
+@router.post("/users/", response_model=UserBase)
 def create_user_route(user: UserCreate, db: Session = Depends(get_db)):
-    return user_controller.create_user(db=db, user=user)
+    db_user = UserMediator(db)._create_user(user)
+    return db_user
 
 @router.get("/users/")
 def read_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    users = user_controller.get_users(db, skip=skip, limit=limit)
+    users = UserMediator(db)._get_users(skip=skip, limit=limit)
     return users
 
-@router.get("/users/{user_id}")
-def read_user(user_id: int, db: Session = Depends(get_db)):
-    db_user = user_controller.get_user(db, user_id=user_id)
+@router.get("/users/username/{username}")
+def read_user_by_username(username: str, db: Session = Depends(get_db)):
+    db_user = UserMediator(db)._get_user_by_username(username=username)
     if db_user is None:
         raise HTTPException(status_code=404, detail="User not found")
     return db_user
 
+
 @router.put("/users/{user_id}")
-def update_user_route(user_id: int, user: User, db: Session = Depends(get_db)):
-    db_user = user_controller.update_user(db, user)
-    if db_user is None:
-        raise HTTPException(status_code=404, detail="User not found")
+def update_user_route(user_email: str, user: UserUpdate, db: Session = Depends(get_db)):
+    db_user = UserMediator(db)._edit_user(user_email, user)
     return db_user
 
 @router.delete("/users/{user_id}")
-def delete_user_route(user_id: int, db: Session = Depends(get_db)):
-    db_user = user_controller.delete_user(db, user_id=user_id)
+def delete_user_route(user_email: str, db: Session = Depends(get_db)):
+    db_user = UserMediator(db)._delete_user(user_email=user_email)
     if db_user is None:
         raise HTTPException(status_code=404, detail="User not found")
     return db_user

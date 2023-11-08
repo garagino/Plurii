@@ -3,7 +3,9 @@ from app.models.labroom import LabRoom
 
 
 def create_room(db: Session, room: LabRoom):
-    db_room = LabRoom(name=room.name, description=room.description)
+    db_room = LabRoom()
+    db_room.name = room.name
+    db_room.description = room.description
     db.add(db_room)
     db.commit()
     db.refresh(db_room)

@@ -46,6 +46,9 @@ watchfiles = "0.18.0"
 websockets = "10.4"
 sqlalchemy-utils = "^0.41.1"
 pg8000 = "^1.30.3"
+python-decouple = "^3.8"
+pyjwt = "^2.8.0"
+passlib = "^1.7.4"
 
 
 

@@ -9,7 +9,7 @@ router = APIRouter()
 
 @router.post("/users/", response_model=UserCreateResponse)
 def create_user_route(user: UserCreate, db: Session = Depends(get_db)):
-    db_user = UserMediator(db)._create_user(user)
+    UserMediator(db)._create_user(user)
     response_data = {"response": "User created successfully"}
     return UserCreateResponse(**response_data)
 

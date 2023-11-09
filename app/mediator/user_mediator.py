@@ -23,7 +23,7 @@ class UserMediator:
         
     
     def _validate_email(self, email: str):
-        existe_user = self.db.query(User).filter(User.email == email).first()
+        existe_user = self.user_controller.get_user_by_email(self.db, email)
         if existe_user:
             raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Email already registered")
         
@@ -45,7 +45,7 @@ class UserMediator:
         
     def _validate_password(self, password: str):
         if len(password) < 8:
-            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Password must be at least 6 characters")
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Password must be at least 8 characters")
         
         if len(password) > 50:
             raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Password must be less than 50 characters")
@@ -63,14 +63,10 @@ class UserMediator:
     
     def _create_user(self, user: UserCreate):
 
-        validate_email = self._validate_email(user.email)
-        validate_password = self._validate_password(user.password)
+        self._validate_email(user.email)
+        self._validate_password(user.password)
         
         
-        if validate_email:
-            return validate_email
-        if validate_password:
-            return validate_password
         
         user.password = self.pwd_context.hash(user.password)
         
@@ -136,7 +132,7 @@ class UserMediator:
             algorithm=None
         )
         
-        return {"access_token": access_token, "usernamo": db_user.username, "access": db_user.user_function}
+        return {"access_token": access_token, "username": db_user.username, "access": db_user.user_function}
     
     
     def verify_token(self, access_token):

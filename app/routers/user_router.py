@@ -4,14 +4,19 @@ from app.schemas.user import UserCreate, UserUpdate
 from app.mediator.user_mediator import UserMediator
 from app.schemas.response import UserCreateResponse
 from app.database import get_db
+from pydantic import ValidationError
+from fastapi.responses import JSONResponse
 
 router = APIRouter()
 
 @router.post("/users/", response_model=UserCreateResponse)
 def create_user_route(user: UserCreate, db: Session = Depends(get_db)):
-    UserMediator(db)._create_user(user)
-    response_data = {"response": "User created successfully"}
-    return UserCreateResponse(**response_data)
+    try:
+        UserMediator(db)._create_user(user)
+        response_data = {"response": "User created successfully"}
+        return UserCreateResponse(**response_data)
+    except ValidationError as e:
+        return JSONResponse(status_code=422, content={"detail": str(e.errors())})
 
 
 @router.get("/users/")

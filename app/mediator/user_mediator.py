@@ -83,6 +83,9 @@ class UserMediator:
     def get_user_by_email(self, email: str):
         return self.user_controller.get_user_by_email(self.db, email)
     
+    def get_user_by_id(self, id: int):
+        return self.user_controller.get_user_by_id(self.db, id)
+    
     
     def _edit_user(self, user_email: str, user: UserUpdate):
         

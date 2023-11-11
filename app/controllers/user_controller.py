@@ -29,6 +29,9 @@ class UserController:
 
     def get_user_by_email(self, db: Session, email: str):
         return db.query(User).filter(User.email == email).first()
+    
+    def get_user_by_id(self, db: Session, id: int):
+        return db.query(User).filter(User.id == id).first()
 
     def get_users(self, db: Session, skip: int = 0, limit: int = 100):
         return db.query(User).offset(skip).limit(limit).all()

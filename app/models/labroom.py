@@ -4,8 +4,9 @@ from app.database import Base
 
 class LabRoom(Base):
     __tablename__ = "lab_rooms"
-    id = Column(Integer, primary_key=True, index=True)
+    id = Column(Integer, primary_key=True, unique=True, index=True)
     name = Column(String(50), unique=True, index=True)
+    capacity = Column(Integer)
     description = Column(String(50))
     is_active = Column(Boolean, default=True)
     in_use = Column(Boolean, default=False)

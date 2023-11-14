@@ -9,6 +9,7 @@ from passlib.context import CryptContext
 from fastapi import HTTPException
 from app.models.user import User
 from app.schemas.user import UserAuth, UserCreate, UserUpdate
+
 from app.controllers.user_controller import UserController
 
 
@@ -59,14 +60,10 @@ class UserMediator:
         if not any(char in "!@#$%&*()-+?_=,<>/;:[]{}" for char in password):
             raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Password must contain at least one special character")
         
-    
-    
     def _create_user(self, user: UserCreate):
 
         self._validate_email(user.email)
         self._validate_password(user.password)
-        
-        
         
         user.password = self.pwd_context.hash(user.password)
         
@@ -86,7 +83,6 @@ class UserMediator:
     def get_user_by_id(self, id: int):
         return self.user_controller.get_user_by_id(self.db, id)
     
-    
     def _edit_user(self, user_email: str, user: UserUpdate):
         
         db_user = self.user_controller.get_user_by_email(self.db, user_email)
@@ -101,13 +97,9 @@ class UserMediator:
             self._validate_password(user.password)
             user.password = self.pwd_context.hash(user.password)
         
-
         self.user_controller.update_user(self.db, user_email, user)
         
         
-        
-    
-    
     def _delete_user(self, user_email: str):
         
         db_user = self.user_controller.get_user_by_email(self.db, user_email)

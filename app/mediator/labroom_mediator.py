@@ -7,7 +7,7 @@ import jwt
 from fastapi import HTTPException
 from app.schemas.user import UserCreate
 from app.models.labroom import LabRoom
-from app.schemas.labroom import LabRoomCreate
+from app.schemas.labroom import LabRoomCreate, LabRoomUpdate
 from app.controllers.user_controller import UserController
 from app.controllers.labroom_controller import LabRoomController
 
@@ -34,8 +34,37 @@ class LabRoomMediator:
         
         self.labroom_controller.create_labroom(self.db, db_labroom)
 
-    #falta os get do labroom
 
-    # falta udpdate do labroom
+    def _get_labroom_by_name(self, name: str):
+        return self.labroom_controller.get_labroom_by_username(self.db,name)
+    
+    def _get_labrooms(self, skip: int = 0, limit: int = 100):
+        return self.labroom_controller.get.labrooms(self.db, skip=skip, limit=limit)
+    
+    def get_labroom_by_id(self, id: int):
+        return self.labroom_controller.get_labroom_by_id(self.db, id)
+    
 
-    # falta o delete do labroom
+    def _edit_labroom(self, user: UserCreate, labroom_id: int, labroom: LabRoomUpdate):
+        
+        db_labroom = self.labroom_controller.get_labroom_by_id(self.db, labroom_id)
+
+        self._validate_adm_function(user.id)
+        
+        if db_labroom is None:
+            raise HTTPException(status_code=404, detail="Labroom not found")
+        
+        #senti como se tivesse faltando os campos
+             
+        self.labroom_controller.update_labroom(self.db, labroom_id, labroom)
+
+    def _delete_labroom (self, user: UserCreate, labroom_id:int):
+
+        db_labroom = self.labroom_controller.get_labroom_by_id(self.db, labroom_id)
+
+        self._validate_adm_function(user.id)
+        
+        if db_labroom is None:
+            raise HTTPException(status_code=404, detail="Labroom not found")
+        
+        self.user_controller.delete_labroom(self.db, labroom_id)

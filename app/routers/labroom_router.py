@@ -3,7 +3,6 @@ from sqlalchemy.orm import Session
 from app.schemas.labroom import LabRoomCreate, LabRoomUpdate
 from app.schemas.user import UserCreate, UserUpdate
 from app.mediator.labroom_mediator import LabRoomMediator
-from app.mediator.user_mediator import UserMediator
 from app.schemas.response import LabRoomCreateResponse
 from app.database import get_db
 from pydantic import ValidationError
@@ -14,7 +13,7 @@ router = APIRouter()
 @router.post("/labrooms/", response_model=LabRoomCreateResponse)
 def create_labroom_route(labroom: LabRoomCreate, db: Session = Depends(get_db)):
     try:
-        UserMediator(db)._create_labroom(labroom)
+        LabRoomMediator(db)._create_labroom(labroom)
         response_data = {"response": "Labroom created successfully"}
         return LabRoomCreateResponse(**response_data)
     except ValidationError as e:

@@ -30,6 +30,9 @@ class UserMediator:
         
         if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
             raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid email address")
+        
+        if not email.endswith("cesar.school"):
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Email must be from cesar.school domain")
 
     
     
@@ -124,7 +127,7 @@ class UserMediator:
         access_token = jwt.encode(
             {"exp": datetime.utcnow() + access_token_expires, "sub": db_user.email},
             self.secret_key,
-            algorithm=None
+            algorithm=self.algorithm
         )
         
         return {"access_token": access_token, "username": db_user.username, "access": db_user.user_function}

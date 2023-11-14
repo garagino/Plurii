@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from app.schemas.user import UserCreate, UserUpdate
+from app.schemas.user import UserCreate, UserUpdate, UserAuth
 from app.mediator.user_mediator import UserMediator
 from app.schemas.response import UserCreateResponse
 from app.database import get_db
@@ -43,3 +43,10 @@ def delete_user_route(user_email: str, db: Session = Depends(get_db)):
     if db_user is None:
         raise HTTPException(status_code=404, detail="User not found")
     return db_user
+
+@router.post("/login/")
+def login_user_route(user: UserAuth, db: Session = Depends(get_db)):
+    db_user = UserMediator(db).user_login(user)
+    if db_user is None:
+        raise HTTPException(status_code=404, detail="User not found")
+    raise HTTPException(status_code=200, detail="User logged in successfully")

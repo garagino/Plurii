@@ -50,3 +50,5 @@ class UserController:
         db.delete(db_user)
         db.commit()
         return db_user
+    
+    

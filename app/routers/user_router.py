@@ -49,4 +49,4 @@ def login_user_route(user: UserAuth, db: Session = Depends(get_db)):
     db_user = UserMediator(db).user_login(user)
     if db_user is None:
         raise HTTPException(status_code=404, detail="User not found")
-    raise HTTPException(status_code=200, detail="User logged in successfully")
+    raise HTTPException(status_code=200, detail={'msg': "User logged in successfully", "token": db_user})

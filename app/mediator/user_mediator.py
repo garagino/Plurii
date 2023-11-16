@@ -140,6 +140,7 @@ class UserMediator:
             email: str = payload.get("sub")
             if email is None:
                 raise HTTPException(status_code=401, detail="Could not validate credentials")
+            return email
             
         except jwt.ExpiredSignatureError:
             raise HTTPException(status_code=401, detail="Signature has expired")

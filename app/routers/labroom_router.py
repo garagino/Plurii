@@ -7,13 +7,16 @@ from app.schemas.response import LabRoomCreateResponse
 from app.database import get_db
 from pydantic import ValidationError
 from fastapi.responses import JSONResponse
+from app.depends import auth_wrapper
+
+
 
 router = APIRouter()
 
 @router.post("/labrooms/", response_model=LabRoomCreateResponse)
-def create_labroom_route(labroom: LabRoomCreate, db: Session = Depends(get_db)):
+def create_labroom_route(labroom: LabRoomCreate, db: Session = Depends(get_db), email = Depends(auth_wrapper)):
     try:
-        LabRoomMediator(db)._create_labroom(labroom)
+        LabRoomMediator(db)._create_labroom(labroom, email)
         response_data = {"response": "Labroom created successfully"}
         return LabRoomCreateResponse(**response_data)
     except ValidationError as e:

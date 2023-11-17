@@ -1,4 +1,3 @@
-from curses.ascii import US
 import re
 from datetime import datetime, timedelta
 from fastapi import status

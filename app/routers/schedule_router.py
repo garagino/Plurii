@@ -21,6 +21,6 @@ def create_schedule_route(schedule: ScheduleCreate, db: Session = Depends(get_db
     
     
 @router.put("/schedules/{schedule_id}")
-def update_schedule_route(schedule_id: int, schedule: ScheduleUpdate, db: Session = Depends(get_db)):
+def update_schedule_route(schedule_id: int, schedule: ScheduleUpdate, db: Session = Depends(get_db), login = Depends(auth_wrapper)):
     db_schedule = ScheduleMediator(db).update_schedule(db,schedule, schedule_id)
     return HTTPException(status_code=200, detail={'msg': "Schedule updated successfully", "schedule": db_schedule})

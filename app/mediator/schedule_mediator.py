@@ -44,3 +44,5 @@ class ScheduleMediator:
 
 
 
+    def update_schedule(self, db: Session, schedule_update: ScheduleUpdate, id_schedule: int):
+        return self.schedule_controller.update_schedule_parameter(db, id_schedule, schedule_update)

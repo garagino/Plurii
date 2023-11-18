@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 from datetime import datetime, date, time
 from enum import Enum
+from typing import Optional
 
 class ScheduleEnum(str, Enum):
     DISPONIVEL =  "disponivel"
@@ -10,14 +11,14 @@ class ScheduleEnum(str, Enum):
     NAO_AUTORIZADO = "nao autorizado"
 
 class ScheduleCreate(BaseModel):
-    idRoom: int
-    idUser: int
-    scheduleDateTime: datetime
-    infAdicional: str
-    approvalDateHour: datetime 
-    approvalStatus: ScheduleEnum
-    idApproval: int = None
-    approvalNotes: str
+    idRoom: Optional[int]
+    idUser: Optional[int]
+    scheduleDateTime: Optional[datetime] 
+    infAdicional: Optional[str]
+    approvalDateHour: Optional[datetime] 
+    approvalStatus: Optional[ScheduleEnum]
+    idApproval: Optional[int] = None
+    approvalNotes: Optional[str]
 
 class ScheduleUpdate(ScheduleCreate):
     pass

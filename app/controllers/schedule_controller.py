@@ -23,14 +23,19 @@ class scheduleController:
             return db.query(Schedule).filter(Schedule.scheduleDateTime == datetime_param).all()
         else:
             return db.query(Schedule).filter(Schedule.scheduleDateTime == datetime_param, Schedule.idRoom == room_id).all()
-    
-    def update_schedule(self, db:Session, schedule:ScheduleUpdate, id_schedule: int):
-        db_schedule = db.query(Schedule).filter(Schedule.id == id_schedule).first()
-        for key, value in schedule.dict(exclude_unset=True).items():
-            setattr(db_schedule, key, value)
         
-        db.commit()
-        db.refresh(db_schedule)
+    def get_schedule_by_id(self, db:Session, id_schedule:int):
+        return db.query(Schedule).filter(Schedule.id == id_schedule).first()
+    
+    def update_schedule_parameter(self, db: Session, id_schedule: int, schedule_update: ScheduleUpdate):
+        db_schedule = db.query(Schedule).filter(Schedule.id == id_schedule).first()
+
+        if db_schedule:
+            for key, value in schedule_update.dict(exclude_unset=True).items():
+                setattr(db_schedule, key, value)
+
+            db.commit()
+            db.refresh(db_schedule)
         return db_schedule
     
     

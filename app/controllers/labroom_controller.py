@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 from sqlalchemy.orm import Session
 from app.models.labroom import LabRoom
 
@@ -12,7 +12,7 @@ class LabRoomController:
         db_room.is_active = room.is_active
         db_room.in_use = room.in_use
         db_room.capacity = room.capacity
-        db_room.last_used = datetime.now()
+        db_room.last_used = datetime.utcnow()
         db.add(db_room)
         db.commit()
         db.refresh(db_room)

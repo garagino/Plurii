@@ -123,7 +123,7 @@ class UserMediator:
         if not self.pwd_context.verify(user.password, db_user.password):
             raise HTTPException(status_code=401, detail="Incorrect password or email")
         
-        access_token_expires = timedelta(minutes=30)
+        access_token_expires = timedelta(minutes=240)
         access_token = jwt.encode(
             {"exp": datetime.utcnow() + access_token_expires, "sub": db_user.email},
             self.secret_key,

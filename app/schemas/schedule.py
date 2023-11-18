@@ -12,12 +12,11 @@ class ScheduleEnum(str, Enum):
 class ScheduleCreate(BaseModel):
     idRoom: int
     idUser: int
-    scheduleDate: date
-    scheduleHour: time
+    scheduleDateTime: datetime
     infAdicional: str
     approvalDateHour: datetime 
     approvalStatus: ScheduleEnum
-    idApproval: int
+    idApproval: int = None
     approvalNotes: str
 
 class ScheduleUpdate(ScheduleCreate):

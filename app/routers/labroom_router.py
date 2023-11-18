@@ -1,7 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.schemas.labroom import LabRoomCreate, LabRoomUpdate
-from app.schemas.user import UserCreate, UserUpdate
 from app.mediator.labroom_mediator import LabRoomMediator
 from app.schemas.response import LabRoomCreateResponse
 from app.database import get_db

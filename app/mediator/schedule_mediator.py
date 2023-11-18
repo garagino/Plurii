@@ -8,7 +8,6 @@ from app.schemas.schedule import ScheduleCreate, ScheduleUpdate
 from app.controllers.schedule_controller import scheduleController
 from app.models.schedule import Schedule
 from datetime import date, time, datetime
-
 from app.mediator.user_mediator import UserMediator
 from app.schemas.user import UserCreate
 from app.models.labroom import LabRoom
@@ -28,16 +27,18 @@ class ScheduleMediator:
         exist_schedule = self.schedule_controller.get_schedule_by_hour(hour)
         if exist_schedule: 
             raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Horario nao disponivel")
-        if exist_schedule < "08:00:00" or exist_schedule > "18:00:00":
+        if hour < "08:00:00" or hour > "18:00:00":
             raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Fora horario de funcionamento")
     
     def validate_date(self, date: date):
         exist_schedule = self.schedule_controller.get_schedule_by_date(date)
         if exist_schedule:
             raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Data nao disponivel")
-        if exist_schedule.weekday() == 1 or exist_schedule.weekday() == 7:
+        if date.weekday() == 1 or date.weekday() == 7:
+            
+            
+            
             raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Data nao disponivel")
 
 
-    // reserva sala
-    // admin aprovar schedule
+

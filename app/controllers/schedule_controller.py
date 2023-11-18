@@ -14,7 +14,7 @@ class scheduleController:
         db_schedule.infAdicional = schedule.infAdicional
         db_schedule.approvalDateHour = schedule.approvalDateHour
         db_schedule.idApproval = schedule.idApproval
-        db_schedule.approvalStatus = schedule.approvalStatus
+        db_schedule.approvalStatus = schedule.approvalStatus.value
         db_schedule.approvalNotes = schedule.approvalNotes
 
         db.add(db_schedule)

@@ -29,10 +29,11 @@ class LabRoomController:
 
     def update_labroom(self, db: Session, room: LabRoom):
         db_room = db.query(LabRoom).filter(LabRoom.id == room.id).first()
-        db_room.name = room.name
-        db_room.description = room.description
-        db.commit()
-        db.refresh(db_room)
+        if db_room:
+            for key, value in room.dict(exclude_unset=True).items():
+                setattr(db_room, key, value)
+            db.commit()
+            db.refresh(db_room)
         return db_room
 
     def delete_labroom(self, db: Session, room_id: int):

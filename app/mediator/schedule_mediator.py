@@ -1,20 +1,15 @@
 import re
-from datetime import datetime, timedelta
+from datetime import datetime
 from fastapi import status
 from decouple import config
 from sqlalchemy.orm import Session
 from fastapi import HTTPException
 from app.schemas.schedule import ScheduleCreate, ScheduleUpdate
 from app.controllers.schedule_controller import scheduleController
-from app.models.schedule import Schedule
 from datetime import date, time, datetime
 from app.mediator.user_mediator import UserMediator
-from app.schemas.user import UserCreate
-from app.models.labroom import LabRoom
-from app.schemas.labroom import LabRoomCreate, LabRoomUpdate
 from app.mediator.user_mediator import UserMediator
 from app.mediator.labroom_mediator import LabRoomMediator
-from app.controllers.labroom_controller import LabRoomController
 
 class ScheduleMediator:
     def __init__(self, db:Session):
@@ -46,3 +41,37 @@ class ScheduleMediator:
 
     def update_schedule(self, db: Session, schedule_update: ScheduleUpdate, id_schedule: int):
         return self.schedule_controller.update_schedule_parameter(db, id_schedule, schedule_update)
+    
+    
+    
+    def get_schedule_by_room(self, room_id:int):
+        exist_schedule = self.schedule_controller.get_schedule_by_room(self.db, room_id)
+        exist_room = self.labroom_mediator.get_labroom_by_id(room_id)
+        if not exist_room:
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Sala nao encontrada")
+        if not exist_schedule: 
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Nao existem agendamentos para esta sala")
+        
+        
+        
+    def get_schedule_by_user(self, email:str):
+        user_id = self.user_mediator.get_user_by_email(email).id
+        exist_user = self.user_mediator.get_user_by_id(user_id)
+        exist_schedule = self.schedule_controller.get_schedule_by_user(self.db, user_id)
+        if not exist_user:
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Usuario nao encontrado")
+        if not exist_schedule: 
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Nao existem agendamentos para este usuario")
+        return exist_schedule
+    
+    def update_schedule_status(self,  schedule_id: int, schedule_update: ScheduleUpdate, db: Session, email: str):
+        db_schedule = self.schedule_controller.get_schedule_by_id(db, schedule_id)
+        is_adm_user = self.user_mediator.get_user_by_email(email).user_function
+        if is_adm_user != "admin":
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Usuario nao autorizado")
+        else:
+            id_admin = self.user_mediator.get_user_by_email(email).id
+        if not db_schedule:
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Agendamento nao encontrado")
+        
+        return self.schedule_controller.update_schedule_status(db, schedule_id, schedule_update, id_admin)

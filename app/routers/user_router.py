@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
+from app.depends import auth_wrapper
 from app.schemas.user import UserCreate, UserUpdate, UserAuth
 from app.mediator.user_mediator import UserMediator
 from app.schemas.response import UserCreateResponse
@@ -27,6 +28,13 @@ def read_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
 @router.get("/users/username/{username}")
 def read_user_by_username(username: str, db: Session = Depends(get_db)):
     db_user = UserMediator(db)._get_user_by_username(username=username)
+    if db_user is None:
+        raise HTTPException(status_code=404, detail="User not found")
+    return db_user
+
+@router.get("/users/email/{email}")
+def read_user_logged(db: Session = Depends(get_db), email = Depends(auth_wrapper)):
+    db_user = UserMediator(db)._get_user_by_email(user_email=email)
     if db_user is None:
         raise HTTPException(status_code=404, detail="User not found")
     return db_user

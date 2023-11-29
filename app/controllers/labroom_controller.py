@@ -1,3 +1,4 @@
+from datetime import datetime
 from sqlalchemy.orm import Session
 from app.models.labroom import LabRoom
 
@@ -11,6 +12,7 @@ class LabRoomController:
         db_room.is_active = room.is_active
         db_room.in_use = room.in_use
         db_room.capacity = room.capacity
+        db_room.last_used = datetime.utcnow()
         db.add(db_room)
         db.commit()
         db.refresh(db_room)
@@ -27,10 +29,11 @@ class LabRoomController:
 
     def update_labroom(self, db: Session, room: LabRoom):
         db_room = db.query(LabRoom).filter(LabRoom.id == room.id).first()
-        db_room.name = room.name
-        db_room.description = room.description
-        db.commit()
-        db.refresh(db_room)
+        if db_room:
+            for key, value in room.dict(exclude_unset=True).items():
+                setattr(db_room, key, value)
+            db.commit()
+            db.refresh(db_room)
         return db_room
 
     def delete_labroom(self, db: Session, room_id: int):

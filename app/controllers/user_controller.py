@@ -47,7 +47,7 @@ class UserController:
 
     def delete_user(self, db: Session, user_email: str):
         db_user = db.query(User).filter(User.email == user_email).first()
-        db.delete(db_user)
+        db.is_active = False
         db.commit()
         return db_user
     

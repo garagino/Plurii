@@ -7,3 +7,7 @@ class UserCreateResponse(BaseModel):
 
 class LabRoomCreateResponse(BaseModel):
     response: str
+    
+    
+class ScheduleCreateResponse(BaseModel):
+    response: str

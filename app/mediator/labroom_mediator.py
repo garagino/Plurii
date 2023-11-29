@@ -1,10 +1,8 @@
-from curses.ascii import US
 import re
 from datetime import datetime, timedelta
 from fastapi import status
 from decouple import config
 from sqlalchemy.orm import Session
-import jwt
 from fastapi import HTTPException
 from app.mediator.user_mediator import UserMediator
 from app.schemas.user import UserCreate

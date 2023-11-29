@@ -11,8 +11,8 @@ class Schedule(Base):
     idUser = Column(Integer, ForeignKey(User.id))
     scheduleDateTime = Column(DateTime, default=datetime.utcnow)
     infAdicional = Column(String(50), nullable=True)
-    approvalDateHour = Column(DateTime, nullable=True)
-    approvalStatus = Column(String(20), default="Em aprovacao")
+    approvalDateHour = Column(DateTime, nullable=True, default=None)
+    approvalStatus = Column(String(20), default="em aprovacao")
     idApproval = Column(Integer, ForeignKey(User.id), nullable=True)
     approvalNotes = Column(String, nullable=True)
 

@@ -24,8 +24,8 @@ class UserCreate(UserAuth):
     username: str
     is_active: Optional[bool] = True
     is_superuser: Optional[bool] = False
-    user_function: FunctionEnum
-    user_role: FunctionRole
+    user_function: FunctionEnum = FunctionEnum.USER
+    user_role: FunctionRole = FunctionRole.STUDENT
         
 class UserUpdate(UserCreate):
     pass

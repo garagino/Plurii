@@ -34,7 +34,7 @@ def read_user_by_username(username: str, db: Session = Depends(get_db)):
 
 @router.get("/users/email/")
 def read_user_logged(db: Session = Depends(get_db), email = Depends(auth_wrapper)):
-    db_user = UserMediator(db)._get_user_by_email(user_email=email)
+    db_user = UserMediator(db).get_user_by_email(email=email)
     if db_user is None:
         raise HTTPException(status_code=404, detail="User not found")
     return db_user

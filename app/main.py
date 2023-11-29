@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from fastapi.encoders import jsonable_encoder
 from app.models.user import User
 from app.models.labroom import LabRoom
+from app.models.schedule import Schedule
 from app.routers import user_router
 from app.routers import labroom_router, schedule_router
 from .database import engine
@@ -25,6 +26,7 @@ app.add_middleware(
 
 User.metadata.create_all(bind=engine)
 LabRoom.metadata.create_all(bind=engine)
+Schedule.metadata.create_all(bind=engine)
 
 
 

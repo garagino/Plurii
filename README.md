@@ -2,7 +2,7 @@
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/iuricode/README-template?style=for-the-badge)
 
-<img src="" alt="equipe-plurii">
+<img src="https://github.com/anabxalves/anabxalves/assets/108446826/18072226-9184-45db-afb8-f283bd7faaeb"/>
 
 > Unindo experiências para criar soluções Plurais!
 ---

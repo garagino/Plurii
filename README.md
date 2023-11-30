@@ -115,7 +115,24 @@
    </dt>
    5. Aplicação sendo executada com sucesso!
 </dl>
-   
+
+# 📄 Como foi desenvolvido?
+Este projeto foi concebido com a visão de combinar funcionalidade robusta com uma experiência de usuário imersiva. 
+
+**Ideação e Planejamento**
+<br>
+Inicialmente, realizamos sessões de brainstorming para identificar as funcionalidades chave necessárias em um sistema de reserva. Após definir os requisitos, esboçamos wireframes e criamos um roadmap de desenvolvimento, priorizando as funcionalidades e a experiência do usuário.
+
+**Desenvolvimento Ágil**
+<br>
+Adotamos uma abordagem ágil para o desenvolvimento, permitindo uma adaptação rápida às mudanças e a entrega contínua de recursos. Iterações regulares e feedback da equipe garantiram que o projeto permanecesse alinhado com nossos objetivos.
+
+**Componentes Reutilizáveis**
+<br>
+Com foco na modularidade, criamos componentes reutilizáveis que poderiam ser facilmente adaptados e reutilizados em diferentes partes do aplicativo, garantindo consistência e eficiência no desenvolvimento.
+
+🌟 Cada linha de código reflete nosso compromisso com qualidade e atenção aos detalhes, culminando em um sistema de reservas que é tanto robusto quanto intuitivo. 
+
 ## 🔗 Google Sites
 
 O Google Site é utilizado como repositório geral das atividades da equipe.

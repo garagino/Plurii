@@ -128,7 +128,7 @@ O Google Site é utilizado como repositório geral das atividades da equipe.
 
 O layout completo da aplicação está disponível no Figma:
 
-<a href="https://www.figma.com/file/TjWS7gPzge1Yv398tRMIGQ/Projetos-3_PlurII?type=design&node-id=260%3A2&mode=design&t=KjeyNiVJ65KGUi0n-1">
+<a href="https://www.figma.com/proto/TjWS7gPzge1Yv398tRMIGQ/Projetos-3_PlurII?type=design&node-id=728-2196&t=k6GWB3zTk8Ul7R7a-0&scaling=min-zoom&starting-point-node-id=942%3A4551&show-proto-sidebar=1">
   <img src="https://img.shields.io/badge/Acessar%20Layout%20-Figma-%2304D361">
 </a>
 

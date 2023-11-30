@@ -47,14 +47,20 @@
 
 <table class="table">
    <tr>
-      <td>
-         Visualização da Disponibilidade
+      <td align="center">
+         <b>
+            Visualização da Disponibilidade
+         </b>
       </td>
-      <td>
-         Agendamento
+      <td align="center">
+         <b>
+            Agendamento
+         </b>
       </td>
-      <td>
-         Confirmação via Email
+      <td align="center">
+         <b>
+            Confirmação via Email
+         </b>
       </td>
    </tr>
    <tr>

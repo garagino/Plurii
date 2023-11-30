@@ -8,16 +8,67 @@
 ---
 
 ## 🤖 Cliente
-
-Infos aqui...
+<table>
+   <tr>
+      <td>
+         <img src="https://github.com/anabxalves/abxaSHimp/assets/108446826/727024fd-ecdc-4ed6-b82d-7bd64a853ddb"/>
+      </td>
+      <td>
+         <i> O “Garagem” é um espaço maker equipado com maquinário, ferramentas e componentes eletrônicos destinado ao estudo e criação de artefatos físicos e interativos. Sendo o Garagino um grupo de estudos dentro do garagem. </i>
+      </td>
+   </tr>
+</table>
 
 ## 👊 Problemática
-
-Infos aqui...
+<div align="center">
+   <h3>
+      Como aprimorar a segurança, eficiência e colaboração no uso das salas e equipamentos do Laboratório Garagem?
+   </h3>
+   <i>
+      Dificuldades e incertezas a respeito da centralização de informações e procedimento de solicitação a respeito dos espaços e ferramentas do Laboratório Garagem, o que gera um excesso comunicativo.
+   </i>
+</div>
 
 ## 😎 Solução
+<div align="center">
+   <br>
+   <img src="https://github.com/anabxalves/anabxalves/assets/108446826/18072226-9184-45db-afb8-f283bd7faaeb"/>
+</div>
+<br>
+<div align="center">
+   <h3>
+      <i>
+         Sistema web responsivo de agendamento de horários e visualização de disponibilidade das salas do Laboratório Garagem, sob confirmação de responsável, com canal de comunicação via email.
+      </i>
+   </h3>
+</div>
 
-Infos aqui...
+### Nossas funcionalidades
+
+<table class="table">
+   <tr>
+      <td>
+         Visualização da Disponibilidade
+      </td>
+      <td>
+         Agendamento
+      </td>
+      <td>
+         Confirmação via Email
+      </td>
+   </tr>
+   <tr>
+      <td>
+         Esta funcionalidade permite aos usuários visualizarem de forma intuitiva a disponibilidade das salas no laboratório garagem. Os usuários poderão facilmente verificar quais horários estão livres e quais estão ocupados, fornecendo uma visão geral das opções disponíveis para agendamento.
+      </td>
+      <td>
+         Permite aos usuários solicitar o agendamento de uma sala, sujeito à aprovação de um responsável. Na solicitação, o usuário deve fornecer um motivo para a reserva da sala. Além disso, o sistema fornecerá informações sobre as características e recursos de cada sala, como equipamentos disponíveis, capacidade de assentos. Isso ajudará os usuários a escolherem a sala apropriada para suas necessidades, garantindo um processo de agendamento eficiente.
+      </td>
+      <td>
+         Esta funcionalidade automatiza a comunicação com os usuários. Após a aprovação do agendamento, o sistema enviará um e-mail de confirmação ao usuário que efetuou a reserva. Além disso, o usuário receberá notificações por e-mail sobre quaisquer atualizações ou alterações em seu agendamento, garantindo que estejam sempre informados.
+      </td>
+   </tr>
+</table>
 
 ## 🚀 Linguagem utilizada
 - <img src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54" />

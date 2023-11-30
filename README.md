@@ -131,7 +131,7 @@ Adotamos uma abordagem ágil para o desenvolvimento, permitindo uma adaptação 
 <br>
 Com foco na modularidade, criamos componentes reutilizáveis que poderiam ser facilmente adaptados e reutilizados em diferentes partes do aplicativo, garantindo consistência e eficiência no desenvolvimento.
 
-🌟 Cada linha de código reflete nosso compromisso com qualidade e atenção aos detalhes, culminando em um sistema de reservas que é tanto robusto quanto intuitivo. 
+🌟 <i> **Cada linha de código reflete nosso compromisso com qualidade e atenção aos detalhes, culminando em um sistema de reservas que é tanto robusto quanto intuitivo!** </i>
 
 ## 🔗 Google Sites
 
